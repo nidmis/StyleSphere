@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Welcome - StyleSphere{% endblock %}
+
+{% block content %}
+<div class="content-section home-page">
+
+    {# --- Hero Section --- #}
+    <section class="hero fade-in">
+        <h1>Welcome to StyleSphere! ✨</h1>
+        <p class="subtitle">Your personal AI outfit recommender.</p>
+        <p>Never stare blankly at your closet again. Upload your clothes, tell us the vibe, and get instant style inspiration!</p>
+        <div class="hero-actions">
+            <a href="{{ url_for('upload_item') }}" class="button-primary">Add Items to Closet</a>
+            <a href="{{ url_for('recommend') }}" class="button-secondary">Get Recommendations</a>
+        </div>
+    </section>
+
+    {# --- Features Section --- #}
+    <section class="features fade-in" style="animation-delay: 0.2s;">
+        <h2 class="section-title">How it Works</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                 <span class="feature-icon">📤</span>
+                 <h3>Upload Your Clothes</h3>
+                 <p>Snap pictures of your items and easily add them to your virtual closet.</p>
+            </div>
+             <div class="feature-item">
+                 <span class="feature-icon">⚙️</span>
+                 <h3>Set Your Vibe</h3> {# Changed title slightly #}
+                 <p>Choose the occasion, weather, and core items you feel like wearing.</p>
+            </div>
+             <div class="feature-item">
+                 <span class="feature-icon">🪄</span>
+                 <h3>Get AI Magic</h3>
+                 <p>Our AI finds the best outfit combinations based on style compatibility.</p>
+            </div>
+        </div>
+    </section>
+
+     {# --- Call to Action Section (Example) --- #}
+     <section class="cta-section fade-in" style="animation-delay: 0.4s;">
+         <h2>Ready to Discover Your Style?</h2>
+         <p>Start building your virtual closet today!</p>
+         <a href="{{ url_for('closet') }}" class="button-primary">Go to My Closet &rarr;</a>
+     </section>
+
+</div>
+{% endblock %}

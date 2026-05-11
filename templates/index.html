@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Add Item - StyleSphere{% endblock %}
+
+{% block content %}
+<div class="content-section upload-page">
+    <h2 class="page-title fade-in">Add to Your Closet</h2>
+    <p class="fade-in" style="animation-delay: 0.1s;">Upload an image and select the category to add an item.</p>
+    <form method="POST" enctype="multipart/form-data" class="styled-form upload-form fade-in" style="animation-delay: 0.2s;">
+        <div>
+            <label for="image">Select Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+
+        <div>
+            <label for="category">Select Category:</label>
+            <select name="category" id="category" required>
+                <option value="" disabled selected>-- Choose Category --</option>
+                {% for cat in categories %}
+                    <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <button type="submit">✨ Add to Closet ✨</button>
+        </div>
+    </form>
+    <div class="navigation-links fade-in" style="animation-delay: 0.3s;">
+         <a href="{{ url_for('closet') }}">View Closet &rarr;</a>
+    </div>
+</div>
+{% endblock %}

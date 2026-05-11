@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Outfit Recommender{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Syne:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="nav-brand">StyleSphere</a> {# Corrected: 'home' instead of 'index' #}
+        <ul class="nav-links">
+            <li><a href="{{ url_for('upload_item') }}">Add Item</a></li>
+            <li><a href="{{ url_for('closet') }}">My Closet</a></li>
+            <li><a href="{{ url_for('recommend') }}">Recommendations</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ now.year if now else 2025 }} StyleSphere - Outfit Recommender</p> {# Added a fallback for year #}
+    </footer>
+
+    <script>
+        // Simple fade-in for elements with class 'fade-in' on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+                el.classList.add('visible');
+            });
+
+            // Staggered animation for cards on specific pages
+            const cardGrids = document.querySelectorAll('.closet-grid, .outfit-grid');
+            cardGrids.forEach(grid => {
+                const cards = grid.querySelectorAll('.item-card, .outfit-card');
+                cards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.07}s`; // Slightly faster stagger
+                });
+            });
+
+            const featureItems = document.querySelectorAll('.home-page .feature-item');
+             featureItems.forEach((item, index) => {
+                item.style.animationDelay = `${0.7 + index * 0.15}s`;
+            });
+
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

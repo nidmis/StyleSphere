@@ -1,0 +1,72 @@
+[
+    {
+        "id": "c52d71d9-88eb-49b1-a14b-a4398a7e0532",
+        "image_path": "static/uploads/18daaa70-2aa2-44fc-947e-18807c6e0c2e.png",
+        "category": "Dresses"
+    },
+    {
+        "id": "6ad81dfa-5311-4404-98fc-b1602617f876",
+        "image_path": "static/uploads/4d72e68c-b849-4062-b982-b8f1379d4898.png",
+        "category": "Tops"
+    },
+    {
+        "id": "939bc5a5-0982-4c6b-8fb2-b26f7002053b",
+        "image_path": "static/uploads/1d81caab-b9ee-42fc-88bd-43f407c0c64e.png",
+        "category": "Tops"
+    },
+    {
+        "id": "5f5d4724-efb0-4333-83b7-3871f3c03f8c",
+        "image_path": "static/uploads/6d9f9abd-bc6d-4517-b62f-e068cb74873d.png",
+        "category": "Tops"
+    },
+    {
+        "id": "fa32a73a-b5b4-4494-bd99-ee17c092aba1",
+        "image_path": "static/uploads/ce463a97-135c-436a-bb1a-aafefdd74e9c.png",
+        "category": "Pants"
+    },
+    {
+        "id": "2effa1a7-ff5a-41d8-a60c-4c69c08cd5bb",
+        "image_path": "static/uploads/df400400-1343-4020-a016-bd4ababd7dd9.png",
+        "category": "Pants"
+    },
+    {
+        "id": "f3ac1160-0c6a-4132-a5cd-4da040d3c618",
+        "image_path": "static/uploads/09f1b880-af1c-4a6c-9cd7-3aa4d5311a86.png",
+        "category": "Shoes"
+    },
+    {
+        "id": "d7002dea-21cf-4531-9e90-9267f4da3bf1",
+        "image_path": "static/uploads/def2869c-77c0-404c-a84a-3a86d2739fa6.png",
+        "category": "Tops"
+    },
+    {
+        "id": "15e49d1d-4dfc-4172-97eb-d9aa3c8e2525",
+        "image_path": "static/uploads/ded02028-ee0c-42ab-9f58-650f74552064.png",
+        "category": "Shoes"
+    },
+    {
+        "id": "4cfdb13c-cb49-4b3f-82b5-5cc352600950",
+        "image_path": "static/uploads/e2dacd08-0f61-4e2c-9928-e478f52d8a71.png",
+        "category": "Bracelets"
+    },
+    {
+        "id": "27d5e9f1-bcd8-437a-855c-4e28f4e9c9f7",
+        "image_path": "static/uploads/9b9f0630-2a52-444d-b9ee-77cc32240f74.jpeg",
+        "category": "Bags"
+    },
+    {
+        "id": "8921f00d-dbb1-44da-9a00-0d747dbaea33",
+        "image_path": "static/uploads/1cf6b1cd-d49c-4aa2-88c9-3d815c3f1cbc.jpeg",
+        "category": "Bags"
+    },
+    {
+        "id": "85dc351f-15f8-4eca-9b4c-0db7fb881f8d",
+        "image_path": "static/uploads/53d390e7-5e15-4893-bf49-11d1a0901730.jpeg",
+        "category": "Outwear"
+    },
+    {
+        "id": "fba12626-72ed-4e91-b59f-d3997e026ac6",
+        "image_path": "static/uploads/5dcf9c6f-ef7f-4679-a8b8-d31e0af6d8e5.png",
+        "category": "Rings"
+    }
+]

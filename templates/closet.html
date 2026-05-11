@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}My Closet - StyleSphere{% endblock %}
+
+{% block content %}
+<div class="content-section closet-page">
+    <h2 class="page-title fade-in">Your Virtual Closet</h2>
+
+    {% if closet %}
+    <p class="item-count fade-in" style="animation-delay: 0.1s;">You have {{ closet|length }} item(s) in your closet.</p>
+    <div class="closet-grid">
+        {% for item in closet %}
+        <div class="item-card"> {# Animation applied by CSS general rule and JS stagger #}
+            <div class="item-image-container">
+                 <img src="{{ url_for('static', filename=item.image_path.split('static/')[1] if 'static/' in item.image_path else item.image_path) }}" alt="{{ item.category }}">
+            </div>
+            <div class="item-details">
+                <span class="item-category">{{ item.category }}</span>
+                <div class="card-actions">
+                    <a href="{{ url_for('mixmatch', item_id=item.id) }}" class="action-link mixmatch" title="Mix & Match">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418C6.92 6.59 8.246 7.5 10.5 7.5h.5a.5.5 0 0 1 0 1h-.5c-2.202 0-3.827-1.24-4.874-2.418C4.08 4.91 2.754 4 0.5 4H0a.5.5 0 0 1-.5-.5m1.5 5A.5.5 0 0 1 2 8h6.5a.5.5 0 0 1 0 1H2a.5.5 0 0 1-.5-.5m13 0a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1 0-1h1.5a.5.5 0 0 1 .5.5m-13-5A.5.5 0 0 1 2 3h1.5a.5.5 0 0 1 0 1H2a.5.5 0 0 1-.5-.5M10 3.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m-6.5 5A.5.5 0 0 1 4 8h1.5a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.5-.5M16 12.5a.5.5 0 0 1-.5.5h-1c-2.202 0-3.827-1.24-4.874-2.418C8.08 9.09 6.754 8 4.5 8h-.5a.5.5 0 0 1 0-1h.5c2.202 0 3.827 1.24 4.874 2.418C10.92 10.59 12.246 11.5 14.5 11.5h1a.5.5 0 0 1 .5.5m-1.5-5a.5.5 0 0 1-.5.5h-6.5a.5.5 0 0 1 0-1h6.5a.5.5 0 0 1 .5.5Z"/></svg>
+                    </a>
+                    <a href="{{ url_for('delete_item', item_id=item.id) }}" class="action-link delete" title="Delete Item" onclick="return confirm('Are you sure you want to delete this item?');">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16"><path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.528M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5m3.5 0a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/></svg>
+                    </a>
+                </div>
+           </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-closet fade-in" style="animation-delay: 0.1s;">
+        <p>Your closet feels a bit empty...</p>
+        <a href="{{ url_for('upload_item') }}" class="button-primary">✨ Add Your First Item ✨</a>
+    </div>
+    {% endif %}
+
+    <div class="navigation-links bottom-nav fade-in" style="animation-delay: 0.2s;">
+        <a href="{{ url_for('upload_item') }}">&larr; Add More Items</a> | <a href="{{ url_for('recommend') }}">Get Recommendations &rarr;</a>
+    </div>
+</div>
+{% endblock %}

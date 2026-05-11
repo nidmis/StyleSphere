@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Mix & Match - StyleSphere{% endblock %}
+
+{% block content %}
+<div class="content-section mixmatch-page">
+    <h2 class="page-title fade-in">Mix & Match Suggestions</h2>
+
+    <h3 class="fade-in" style="animation-delay: 0.1s;">Selected Item:</h3>
+     <div class="item-card selected-item fade-in" style="display: inline-block; vertical-align: top; animation-delay: 0.2s; transform: none;">
+         <div class="item-image-container" style="height: auto;"> {# Adjust container style for selected item #}
+             <img src="{{ url_for('static', filename=base_item.image_path.split('static/')[1] if 'static/' in base_item.image_path else base_item.image_path) }}" alt="{{ base_item.category }}">
+         </div>
+         <div class="item-details" style="border-top: 1px solid var(--border-color); padding-top: 10px;">
+            <span class="item-category">{{ base_item.category }}</span>
+         </div>
+    </div>
+
+    <hr class="fade-in" style="animation-delay: 0.3s;">
+    <h4 class="fade-in" style="animation-delay: 0.4s;">Suggested Matches:</h4>
+     {% if suggestions %}
+     <p class="fade-in" style="animation-delay: 0.5s;">Here are some items from other categories in your closet:</p>
+     <div class="closet-grid"> {# Re-use closet-grid for consistency, stagger applied by JS #}
+         {% for item in suggestions %}
+         <div class="item-card">
+             <div class="item-image-container">
+                <img src="{{ url_for('static', filename=item.image_path.split('static/')[1] if 'static/' in item.image_path else item.image_path) }}" alt="{{ item.category }}">
+            </div>
+            <div class="item-details">
+                <span class="item-category">{{ item.category }}</span>
+            </div>
+         </div>
+         {% endfor %}
+     </div>
+     {% else %}
+     <p class="fade-in" style="animation-delay: 0.5s;">No other items currently available in your closet for suggestions.</p>
+     {% endif %}
+
+    <div class="navigation-links bottom-nav fade-in" style="animation-delay: 0.6s;">
+        <a href="{{ url_for('closet') }}">&larr; Back to Closet</a>
+    </div>
+</div>
+{% endblock %}

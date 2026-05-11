@@ -1,0 +1,7 @@
+__pycache__/
+models/
+*.rdp
+password.txt
+.ipynb_checkpoints/
+venv/
+Re-PolyVore/

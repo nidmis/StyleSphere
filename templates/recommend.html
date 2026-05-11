@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Recommendations - StyleSphere{% endblock %}
+
+{% block content %}
+<div class="content-section recommend-page">
+    <h2 class="page-title fade-in">Get Outfit Recommendations</h2>
+    <p class="fade-in" style="animation-delay: 0.1s;">Select the core items you want to wear, choose filters, and get style suggestions!</p>
+
+    <form method="POST" class="styled-form recommend-form fade-in" style="animation-delay: 0.2s;">
+        <fieldset>
+            <legend>What core items do you want to include?</legend>
+            <div class="checkbox-group">
+            {% for cat in core_categories_options %}
+                <label class="checkbox-label">
+                    <input type="checkbox" name="core_categories" value="{{ cat }}"
+                           {% if cat in selected_categories_form %}checked{% endif %}> {{ cat }}
+                </label>
+            {% endfor %}
+            </div>
+        </fieldset>
+
+        <fieldset>
+             <legend>Include Accessories?</legend>
+             <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="include_accessories" value="yes" {% if include_accessories_form == 'yes' %}checked{% endif %}> Yes
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="include_accessories" value="no" {% if include_accessories_form == 'no' or not include_accessories_form %}checked{% endif %}> No
+                </label>
+             </div>
+        </fieldset>
+
+        <fieldset>
+             <legend>Filters (Optional)</legend>
+             <div class="filter-group">
+                <div>
+                    <label for="weather">Weather:</label>
+                    <select name="weather" id="weather">
+                        {% for w in weather_options %}
+                        <option value="{{ w }}" {% if w == selected_weather %}selected{% endif %}>{{ w }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="occasion">Occasion:</label>
+                    <select name="occasion" id="occasion">
+                         {% for o in occasion_options %}
+                        <option value="{{ o }}" {% if o == selected_occasion %}selected{% endif %}>{{ o }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+             </div>
+        </fieldset>
+
+        <div>
+            <button type="submit">🪄 Find My Style 🪄</button>
+        </div>
+    </form>
+
+    <hr class="fade-in" style="animation-delay: 0.3s;">
+
+    <h3 class="fade-in" style="animation-delay: 0.4s;">Top Recommendations</h3>
+
+    {% if error_message %}
+        <div class="alert alert-warning">{{ error_message }}</div>
+    {% endif %}
+
+    {% if outfits %}
+    <div class="outfit-grid">
+        {% for outfit, score in outfits %}
+        <div class="outfit-card">
+            {# --- Revised Score Display --- #}
+            {% if outfit|length > 1 %} {# Only show score for multi-item outfits #}
+                 <strong>Score: {{ "%.2f"|format(score) }}</strong><br>
+            {% else %}
+                 <strong>(Single Item)</strong><br> {# Indicate single item #}
+            {% endif %}
+            {# --- End Revised Score Display --- #}
+            <div class="outfit-items">
+                {% for item in outfit %}
+                    <div class="item-thumb">
+                        <img src="{{ url_for('static', filename=item.image_path.split('static/')[1] if 'static/' in item.image_path else item.image_path) }}" alt="{{ item.category }}">
+                        <span>{{ item.category }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% elif request.method == 'POST' and not error_message %}
+        <p class="fade-in" style="animation-delay: 0.5s;">No outfits generated based on your selections. Try adjusting filters or adding more items.</p>
+    {% else %}
+         <p class="fade-in" style="animation-delay: 0.5s;">Select your preferences above and click "Find My Style".</p>
+    {% endif %}
+
+    <div class="navigation-links bottom-nav fade-in" style="animation-delay: 0.6s;">
+        <a href="{{ url_for('closet') }}">&larr; Back to Closet</a>
+    </div>
+</div>
+{% endblock %}
